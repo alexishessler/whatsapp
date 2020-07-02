@@ -1,4 +1,7 @@
 import React from 'react';
+import { ENV } from "../../config.env";
+
+console.log(ENV)
 
 const App = () => (
   <div>
