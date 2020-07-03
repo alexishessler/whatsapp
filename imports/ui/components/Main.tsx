@@ -1,12 +1,16 @@
 // REACT
 
 import React from 'react';
+import Left from './Left';
+import Right from './Right';
+import StyledMain from "../elements/StyledMain";
 
 const Main = (props:any):JSX.Element => {
     return(
-        <div>
-            <h1>Welcome to Main!</h1>
-        </div>
+        <StyledMain>
+            <Left></Left>
+            <Right right></Right>
+        </StyledMain>
     )
 }
 
