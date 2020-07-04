@@ -2,6 +2,7 @@ import { User } from "./models";
 import { Meteor } from "meteor/meteor";
 import { Accounts } from 'meteor/accounts-base';
 
+// 1/3 DATA
 export const dummyUsers:User[] =  
 [
     {
@@ -96,7 +97,16 @@ export const dummyUsers:User[] =
         }
     }
 ]
+// 2/3 PUBLISH
+if(Meteor.isServer){
+    Meteor.publish('users.all', () => {
+        return Meteor.users.find({}, {
+            fields: {services: 0}
+        })
+    })
+}
 
+// 3/3 METHODS
 Meteor.methods({
     'user-login': ({username, phone, password}) => {
         console.log("IM HERREEEEEEE >-------->")

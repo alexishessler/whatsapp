@@ -2,15 +2,27 @@
 
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from "meteor/mongo";
-import {createDummyUsers} from '../imports/api/helpers';
-import {dummyUsers} from "../imports/api/users";
+import {createDummyUsers, createDummyChats} from '../imports/api/helpers';
+import {dummyUsers} from "../imports/api/users"; // no need to import the collection because Meteor.users.find()
+import {dummyChats, ChatsCollection} from "../imports/api/chats";
+
 
 Meteor.startup(() => {
-    if(Meteor.users.find().count() === 0){
+    const numberOfUsers = Meteor.users.find().count()
+    const numberOfChats = ChatsCollection.find().count()
+    
+    if(numberOfUsers === 0){
         console.log('NO USERS')
         createDummyUsers(dummyUsers);
     } else {
         console.log('MORE THAN 0 USERS')
+    }
+
+    if(numberOfChats === 0){
+        console.log('NO CHATS')
+        createDummyChats(dummyChats);
+    } else {
+        console.log('MORE THAN 0 CHATS')
     }
 })
 
