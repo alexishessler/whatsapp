@@ -12,7 +12,7 @@ const icons:string[] = ["circle-notch", "comment-alt", "ellipsis-v"];
 
 const Left = (props:any):JSX.Element => {
     const avatar_url = Meteor.user().profile.picture;
-    const { chats } = props;
+    const { chats, onChatClick, selectedChat } = props;
     return(
         <StyledLeft>
             <Header icons={icons} iconClass="greyIcon">
@@ -20,7 +20,10 @@ const Left = (props:any):JSX.Element => {
             </Header>
             <Status/>
             <SearchBar/>
-            <ChatList chats={chats}/>
+            <ChatList 
+                chats={chats} 
+                onChatClick={onChatClick} 
+                selectedChat={selectedChat}/>
         </StyledLeft>
     )
 }

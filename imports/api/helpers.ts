@@ -1,7 +1,8 @@
 // Functions for server
 
-import { User, Chat } from "./models";
+import { User, Chat, Message } from "./models";
 import { ChatsCollection } from "./chats";
+import { MessagesCollection } from "./messages";
 import { Accounts } from "meteor/accounts-base";
 import { Meteor } from "meteor/meteor";
 
@@ -48,4 +49,10 @@ const findOtherId = (participants:string[]):string => {
 
 const findOtherUser = (_id:string):User => {
     return Meteor.users.findOne({_id});
+}
+
+export const createDummyMessages = (messages:Message[]) => {
+    messages.forEach((message) => {
+        MessagesCollection.insert(message)
+    })
 }

@@ -2,14 +2,16 @@
 
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from "meteor/mongo";
-import {createDummyUsers, createDummyChats} from '../imports/api/helpers';
+import {createDummyUsers, createDummyChats, createDummyMessages} from '../imports/api/helpers';
 import {dummyUsers} from "../imports/api/users"; // no need to import the collection because Meteor.users.find()
 import {dummyChats, ChatsCollection} from "../imports/api/chats";
+import {dummyMessages, MessagesCollection} from "../imports/api/messages";
 
 
 Meteor.startup(() => {
     const numberOfUsers = Meteor.users.find().count()
     const numberOfChats = ChatsCollection.find().count()
+    const numberOfMessages = MessagesCollection.find().count()
     
     if(numberOfUsers === 0){
         console.log('NO USERS')
@@ -24,6 +26,17 @@ Meteor.startup(() => {
     } else {
         console.log('MORE THAN 0 CHATS')
     }
+
+    if(numberOfMessages === 0){
+        console.log('NO MESSAGE')
+        console.log("CREATION WILL OPERATE HERE !!")
+        console.log('numberOfMessages', numberOfMessages)
+        createDummyMessages(dummyMessages); 
+    } else {
+        console.log('MORE THAN 0 MESSAGES')
+        console.log('numberOfMessages', numberOfMessages)
+    }
+
 })
 
 
